@@ -350,8 +350,8 @@ var SvgButton = styled__default['default'].button(_templateObject$8 || (_templat
   return props.disabled ? 'not-allowed' : 'pointer';
 });
 
-var _templateObject$7, _templateObject2;
-styled__default['default'].span(_templateObject$7 || (_templateObject$7 = _taggedTemplateLiteral(["\n  font-size: 12px;\n  line-height: 1;\n"])));
+var _templateObject$7, _templateObject2, _templateObject3;
+var Label = styled__default['default'].span(_templateObject$7 || (_templateObject$7 = _taggedTemplateLiteral(["\n  font-size: 12px;\n  line-height: 1;\n"])));
 
 function Arrow(_ref) {
   var className = _ref.className,
@@ -359,12 +359,15 @@ function Arrow(_ref) {
       inverted = _ref.inverted,
       label = _ref.label,
       disabled = _ref.disabled;
+  styled__default['default'](Label)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    cursor: ", ";\n  "])), function (props) {
+    return props.disabled ? 'not-allowed' : 'pointer';
+  });
   return /*#__PURE__*/React__default['default'].createElement(SvgButton, {
     className: className,
     onClick: onClick,
     "data-tour-elem": "".concat(inverted ? 'right' : 'left', "-arrow"),
     disabled: disabled
-  }, label ? /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, label) : /*#__PURE__*/React__default['default'].createElement("svg", {
+  }, label ? /*#__PURE__*/React__default['default'].createElement(Label, null, label) : /*#__PURE__*/React__default['default'].createElement("svg", {
     viewBox: "0 0 18.4 14.4"
   }, /*#__PURE__*/React__default['default'].createElement("path", {
     d: inverted ? 'M17 7.2H1M10.8 1L17 7.2l-6.2 6.2' : 'M1.4 7.2h16M7.6 1L1.4 7.2l6.2 6.2',
@@ -381,10 +384,9 @@ Arrow.propTypes = {
   onClick: PropTypes__default['default'].func.isRequired,
   inverted: PropTypes__default['default'].bool,
   label: PropTypes__default['default'].node,
-  disabled: PropTypes__default['default'].bool,
-  customSvg: PropTypes__default['default'].instanceOf
+  disabled: PropTypes__default['default'].bool
 };
-var Arrow$1 = styled__default['default'](Arrow)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  color: ", ";\n\n  ", ";\n  ", ";\n\n  &:hover {\n    color: ", ";\n  }\n"])), function (props) {
+var Arrow$1 = styled__default['default'](Arrow)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  color: ", ";\n\n  ", ";\n  ", ";\n\n  &:hover {\n    color: ", ";\n  }\n"])), function (props) {
   return props.disabled ? '#caccce' : '#646464';
 }, function (props) {
   return props.inverted ? 'margin-left: 24px;' : 'margin-right: 24px;';
@@ -399,12 +401,18 @@ var _templateObject$6;
 function Close(_ref) {
   var className = _ref.className,
       onClick = _ref.onClick,
-      customSvg = _ref.customSvg;
+      ariaLabel = _ref.ariaLabel,
+      children = _ref.children;
   return /*#__PURE__*/React__default['default'].createElement(SvgButton, {
     className: className,
-    onClick: onClick
-  }, customSvg ? /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, customSvg) : /*#__PURE__*/React__default['default'].createElement("svg", {
-    viewBox: "0 0 9.1 9.1"
+    onClick: onClick,
+    "aria-label": ariaLabel
+  }, children ? React__default['default'].Children.map(children, function (child) {
+    return /*#__PURE__*/React__default['default'].cloneElement(child);
+  }) : /*#__PURE__*/React__default['default'].createElement("svg", {
+    viewBox: "0 0 9.1 9.1",
+    "aria-hidden": true,
+    role: "presentation"
   }, /*#__PURE__*/React__default['default'].createElement("path", {
     fill: "currentColor",
     d: "M5.9 4.5l2.8-2.8c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L4.5 3.1 1.7.3C1.3-.1.7-.1.3.3c-.4.4-.4 1 0 1.4l2.8 2.8L.3 7.4c-.4.4-.4 1 0 1.4.2.2.4.3.7.3s.5-.1.7-.3L4.5 6l2.8 2.8c.3.2.5.3.8.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L5.9 4.5z"
@@ -413,7 +421,8 @@ function Close(_ref) {
 
 Close.propTypes = {
   className: PropTypes__default['default'].string.isRequired,
-  onClick: PropTypes__default['default'].func.isRequired
+  onClick: PropTypes__default['default'].func.isRequired,
+  ariaLabel: PropTypes__default['default'].string
 };
 var StyledClose = styled__default['default'](Close)(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 22px;\n  right: 22px;\n  width: 9px;\n  height: 9px;\n  color: #5e5e5e;\n  &:hover {\n    color: #000;\n  }\n"])));
 
@@ -525,7 +534,7 @@ var _templateObject$5;
 var Guide = styled__default['default'].div(_templateObject$5 || (_templateObject$5 = _taggedTemplateLiteral(["\n  --reactour-accent: ", ";\n  ", "\n  position: fixed;\n  transition: transform 0.3s;\n  top: 0;\n  left: 0;\n  z-index: 1000000;\n\n  transform: ", ";\n"])), function (props) {
   return props.accentColor;
 }, function (props) {
-  return props.defaultStyles ? "\n  max-width: 331px;\n  min-width: 150px;\n  padding-right: 40px;\n  border-radius: ".concat(props.rounded, "px;\n  background-color: #fff;\n  padding: 24px 30px;\n  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);\n  color: inherit;\n  ") : '';
+  return props.defaultStyles ? "\n  max-width: 331px;\n  min-width: 150px;\n  padding-right: 40px;\n  border-radius: ".concat(props.rounded, "px;\n  background-color: #fff;\n  padding: 24px 24px;\n  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);\n  color: inherit;\n  ") : '';
 }, function (props) {
   var targetTop = props.targetTop,
       targetRight = props.targetRight,
@@ -1013,6 +1022,7 @@ var propTypes = {
   className: PropTypes__default['default'].string,
   closeWithMask: PropTypes__default['default'].bool,
   customClose: PropTypes__default['default'].instanceOf(Element),
+  disabledFill: PropTypes__default['default'].string,
   inViewThreshold: PropTypes__default['default'].number,
   isOpen: PropTypes__default['default'].bool.isRequired,
   lastStepNextButton: PropTypes__default['default'].node,
@@ -1657,7 +1667,7 @@ var Tour = /*#__PURE__*/function (_Component) {
           },
           className: "reactour__close",
           customSvg: this.props.customClose
-        }) : null))));
+        }, this.props.customClose) : null))));
       }
 
       return null;

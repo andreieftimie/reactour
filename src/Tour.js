@@ -586,7 +586,9 @@ class Tour extends Component {
                       onClick={() => onRequestClose(this.state.current)}
                       className="reactour__close"
                       customSvg={this.props.customClose}
-                    />
+                    >
+                      {this.props.customClose}
+                    </Close>
                   ) : null}
                 </>
               )}
