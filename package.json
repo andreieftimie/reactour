@@ -75,8 +75,8 @@
     "webpack-dev-server": "3.11.2"
   },
   "peerDependencies": {
-    "react": "^16.3.0 || ^17.0.0-0",
-    "react-dom": "^16.3.0 || ^17.0.0-0",
+    "react": "^16.3.0 || ^17.0.0",
+    "react-dom": "^16.3.0 || ^17.0.0",
     "react-is": "^16.8 || ^17.0.0-0",
     "styled-components": "^4.0.0 || ^5.0.0"
   },
@@ -87,7 +87,7 @@
     "lodash.debounce": "4.0.8",
     "lodash.pick": "4.4.0",
     "prop-types": "15.7.2",
-    "react-focus-lock": "2.5.0",
+    "react-focus-lock": "2.5.2",
     "scroll-smooth": "1.1.0",
     "scrollparent": "2.0.1"
   }
